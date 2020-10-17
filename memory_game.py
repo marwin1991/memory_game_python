@@ -27,28 +27,26 @@ def get_game_difficulty():
 
 
 def init_board(width, height):
-
+    letters_number = width * height
     if width*height % 2 != 0 :
-        print("błąd programisty nie można wykonać funkcji")
+        raise ValueError("Wrong size of the board!!!")
     else:
         alphabet = "abcdefghijklmntoprstuwabcdefghijklmntoprstuw"
         digits_to_board = ""
-        for i in range(0, int((width*height)/2)) :
-            digits_to_board += alphabet[i]
-            digits_to_board += alphabet[i]
+        for i in range(0, int((letters_number)/2)) :
+            digits_to_board += alphabet[i] + alphabet[i]
 
-        print(digits_to_board)
         list_of_digits = list(digits_to_board)
-
         random.shuffle(list_of_digits)
 
+    
         board = []
-        d = 0 
-        for w in range(0, width):
+        counter = 0 
+        for i in range(0, width):
             board.append([])
             for _ in range(0, height):
-                board[w].append(list_of_digits[d])
-                d += 1
+                board[i].append(list_of_digits[counter])
+                counter += 1
 
     return board
 
